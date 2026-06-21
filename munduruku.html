@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="pt-BR"><head><script src="/_sdk/telemetry_sdk.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revista Digital Vozes da Natureza - Daniel Munduruku</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;0,900&amp;family=Alegreya+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+        :root { --earth: #5C3D2E; --gold: #C8A951; --forest: #2D5016; --clay: #B8612A; --sand: #F5E6C8; --dark: #1A0F0A; }
+        body { font-family: 'Alegreya', serif; scroll-behavior: smooth; }
+        .font-sans-alt { font-family: 'Alegreya Sans', sans-serif; }
+        .pattern-border { background-image: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 8px, transparent 8px, transparent 16px, var(--clay) 16px, var(--clay) 24px, transparent 24px, transparent 32px); height: 6px; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .book-row { transition: background 0.3s; }
+        .book-row:hover { background: rgba(200,169,81,0.15) !important; cursor: pointer; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+        .nav-link { transition: color 0.3s; }
+        .nav-link:hover { color: var(--gold); }
+        .geo-pattern { background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23C8A95120' stroke-width='1'/%3E%3C/svg%3E"); }
+        .sort-btn { cursor: pointer; user-select: none; }
+        .sort-btn:hover { color: var(--gold); }
+        .filter-active { background: var(--forest); color: white; }
+        .parallax-container { overflow: hidden; relative; }
+        .parallax-bg { transition: transform 0.1s ease-out; }
+    </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(26, 15, 10);"><nav class="fixed top-0 w-full z-50 bg-[#1A0F0A]/95 backdrop-blur-sm border-b border-[#C8A951]/30">
+   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <span data-template-id="nav-brand" class="canva-text text-[#C8A951] font-bold text-lg tracking-wide" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 17px;">⬥ REVISTA DIGITAL: VOZES DA NATUREZA</span>
+    <div class="hidden md:flex gap-6 font-sans-alt text-sm text-[#F5E6C8]/80">
+     <a href="#video" class="nav-link">Vídeo Principal</a> 
+     <a href="#educacao-indigena" class="nav-link">Educação Indígena</a> 
+     <a href="#mensagem" class="nav-link">Mensagem</a> 
+     <a href="#autor" class="nav-link">Autor</a> 
+     <a href="#redes" class="nav-link">Redes Oficiais</a> 
+     <a href="#instituto" class="nav-link">Instituto UK'A</a> 
+     <a href="#estatisticas" class="nav-link">Estatísticas</a> 
+     <a href="#frases" class="nav-link">Frases</a> 
+     <a href="#galeria" class="nav-link">Galeria</a> 
+     <a href="#obras" class="nav-link">Obras</a> 
+     <a href="#premios" class="nav-link">Prêmios</a> 
+     <a href="#linha-do-tempo" class="nav-link">Cronologia</a>
+     <a href="#creditos" class="nav-link">Créditos</a>
+     <a href="#fontes" class="nav-link">Fontes</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden text-[#C8A951] hover:text-[#F5E6C8] transition-colors">
+     <i data-lucide="menu" style="width:24px;height:24px;"></i>
+    </button>
+   </div>
+   <div id="mobile-menu" class="hidden md:hidden bg-[#1A0F0A] border-b border-[#C8A951]/20 px-4 py-4 flex flex-col gap-3 font-sans-alt text-sm text-[#F5E6C8]/80">
+    <a href="#video" class="nav-link" onclick="toggleMobileMenu()">Vídeo Principal</a> 
+    <a href="#educacao-indigena" class="nav-link" onclick="toggleMobileMenu()">Educação Indígena</a> 
+    <a href="#mensagem" class="nav-link" onclick="toggleMobileMenu()">Mensagem</a> 
+    <a href="#autor" class="nav-link" onclick="toggleMobileMenu()">Autor</a> 
+    <a href="#redes" class="nav-link" onclick="toggleMobileMenu()">Redes Oficiais</a> 
+    <a href="#instituto" class="nav-link" onclick="toggleMobileMenu()">Instituto UK'A</a> 
+    <a href="#estatisticas" class="nav-link" onclick="toggleMobileMenu()">Estatísticas</a> 
+    <a href="#frases" class="nav-link" onclick="toggleMobileMenu()">Frases</a> 
+    <a href="#galeria" class="nav-link" onclick="toggleMobileMenu()">Galeria</a> 
+    <a href="#obras" class="nav-link" onclick="toggleMobileMenu()">Obras</a> 
+    <a href="#premios" class="nav-link" onclick="toggleMobileMenu()">Prêmios</a> 
+    <a href="#linha-do-tempo" class="nav-link" onclick="toggleMobileMenu()">Cronologia</a>
+    <a href="#creditos" class="nav-link" onclick="toggleMobileMenu()">Créditos</a>
+    <a href="#fontes" class="nav-link" onclick="toggleMobileMenu()">Fontes</a>
+   </div>
+  </nav>
+
+  <header class="relative w-full overflow-hidden parallax-container" style="height: calc(85 * min(var(--vh, 1vh), 1vh));">
+   <img id="hero-parallax-img" data-template-id="hero-bg" class="canva-image absolute inset-0 w-full h-full object-cover parallax-bg" loading="lazy" src="https://images.pexels.com/photos/38141183/pexels-photo-38141183.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Stunning aerial shot of a lush green jungle with a winding river">
+   <div class="absolute inset-0 bg-gradient-to-b from-[#1A0F0A]/60 via-[#1A0F0A]/30 to-[#1A0F0A]"></div>
+   <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-16">
+    <div class="pattern-border w-32 mb-6"></div>
+    <span class="text-[#C8A951] uppercase tracking-widest text-sm font-bold font-sans-alt mb-2 block">REVISTA DIGITAL INDIGENISTA</span>
+    <h1 data-template-id="hero-title" class="canva-text text-[#F5E6C8] font-black uppercase tracking-widest drop-shadow-lg" style="color: rgb(245, 230, 200); font-weight: 900; font-style: normal; font-size: 52px;">VOZES DA NATUREZA</h1>
+    <p data-template-id="hero-subtitle" class="canva-text text-[#C8A951] mt-4 max-w-2xl font-sans-alt" style="color: rgb(200, 169, 81); font-weight: 400; font-style: normal; font-size: 20px;">Daniel Munduruku — Escritor, Educador, Pensador Contemporâneo e Guardião dos Saberes Ancestrais</p>
+    <div class="pattern-border w-32 mt-6"></div><a href="#video" class="mt-8 animate-bounce text-[#C8A951]"><i data-lucide="chevron-down" style="width:32px;height:32px;"></i></a>
+   </div>
+  </header>
+
+  <section id="video" class="w-full py-16 px-4 geo-pattern" style="background-color: #1A0F0A;">
+   <div class="max-w-4xl mx-auto fade-in">
+    <h2 data-template-id="video-section-title" class="canva-text text-center text-[#C8A951] font-bold mb-8" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Assista: A Voz de Daniel Munduruku</h2>
+    <div class="relative w-full rounded-xl overflow-hidden shadow-2xl border border-[#C8A951]/20" style="padding-bottom:56.25%;">
+     <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/8D4RF2CqR68?rel=0" title="Daniel Munduruku - Principal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+   </div>
+  </section>
+
+  <section id="educacao-indigena" class="w-full py-16 px-4" style="background-color: #0F0A06;">
+   <div class="max-w-4xl mx-auto fade-in">
+    <h2 class="canva-text text-center text-[#C8A951] font-bold mb-8" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Reflexões sobre a Educação Indígena</h2>
+    <div class="relative w-full rounded-xl overflow-hidden shadow-2xl border border-[#C8A951]/20" style="padding-bottom:56.25%;">
+     <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/EUmx7klGn7w?rel=0" title="Educação Indígena" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+   </div>
+  </section>
+
+  <section id="mensagem" class="w-full py-16 px-4 geo-pattern" style="background-color: #1A0F0A;">
+   <div class="max-w-4xl mx-auto fade-in">
+    <h2 class="canva-text text-center text-[#C8A951] font-bold mb-8" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Mensagem aos Leitores</h2>
+    <div class="relative w-full rounded-xl overflow-hidden shadow-2xl border border-[#C8A951]/20" style="padding-bottom:56.25%;">
+     <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/oa9LhL0Kg4Y?rel=0" title="Mensagem aos Leitores" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+   </div>
+  </section>
+
+  <section id="autor" class="w-full py-20 px-4" style="background: linear-gradient(135deg, #2D1810, #1A0F0A);">
+   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center fade-in">
+    <div class="flex justify-center">
+     <img data-template-id="author-img" class="canva-image w-72 h-72 object-cover rounded-full border-4 border-[#C8A951] shadow-2xl transition-transform duration-500 hover:scale-105" loading="lazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFWxzuzfYAMchtOJuHiWdwvIBgj2qi_8ChuxlVw64QaoL4d43HqeorX06dP4DRQd8mEyNeBKSc_ZKGDgjlboWSsGcmfIcEbEjwa_2P-A&s=10" alt="Daniel Munduruku">
+    </div>
+    <div>
+     <h2 data-template-id="author-name" class="canva-text text-[#C8A951] font-bold mb-4" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Daniel Munduruku: Trajetória, Erudição e Resistência</h2>
+     <div class="canva-text text-[#F5E6C8]/90 space-y-4 leading-relaxed font-sans-alt text-justify" style="color: rgb(245, 230, 200); font-weight: 400; font-style: normal; font-size: 17px;">
+      <p>Nascido in 1964 em Belém do Pará e pertencente ao povo originário Munduruku, Daniel representa uma transição de impacto histórico e estratégico entre a tradicional sabedoria oral da floresta e a alta erudição acadêmica do ocidente. Graduou-se em Filosofia, possui especialização em Psicologia e História e conquistou o título de Doutor em Educação pela renomada Universidade de São Paulo (USP), consolidando-se como uma das mentes intelectuais e sociopolíticas mais influentes no cenário da valorização cultural contemporânea do país. Sua tese de doutorado analisou profundamente o papel educativo fundamental do movimento social indígena na contemporaneidade, convertendo-se em um marco teórico incontornável nacionalmente. Ele compreendeu muito jovem que precisava dominar os códigos e as ferramentas institucionais da escrita escrita — historicamente instrumentalizados de forma colonizadora — e transformá-los em dinâmicos mecanismos de emancipação e soberania das etnias.</p>
+      <p>Com mais de 74 obras literárias publicadas ao longo de sua trajetória multifacetada, sua produção atinge de maneira decisiva o público infantil, infantojuvenil e o corpo docente, traduzindo a sabedoria ancestral de gerações em uma sofisticada ponte literária. Suas palavras promovem a desconstrução sistemática de preconceitos históricos profundamente enraizados na identidade brasileira, estimulam o pensamento plural, defendem o protagonismo e o direito de fala das comunidades indígenas, operando como ferramentas indispensáveis de transformação nas matrizes curriculares.</p>
+      <p>Como ativista engajado na garantia de direitos fundamentais, Daniel atuou ativamente na concepção e fundação do INBRAPI (Instituto Indígena Brasileiro para a Propriedade Intelectual), liderando frentes internacionais de combate contra a biopirataria, uso indébito de grafismos ancestrais e assegurando salvaguardas intelectuais jurídicas para conhecimentos coletivos. O impacto de suas obras constitui uma resposta direta aos dados históricos de invisibilidade: estatísticas do Censo revelam que o Brasil abriga mais de 305 etnias e 274 línguas indígenas vivas. Daniel argumenta que a literatura é a tecnologia adotada pelos povos originários para pautar sua própria história na esfera pública, redefinindo o conceito cidadão de identidade nacional. Atualmente, sua contribuição cultural atingiu novos ápices: atuou na teledramaturgia em 2023, exerce mandato parlamentar político a partir de 2025 e, em 2026, consagrou-se como o primeiro escritor indígena a tomar posse na prestigiosa Academia Paulista de Letras (APL).</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section id="redes" class="w-full py-16 px-4 geo-pattern" style="background-color: #1A0F0A;">
+   <div class="max-w-6xl mx-auto fade-in">
+    <h2 class="canva-text text-center text-[#C8A951] font-bold mb-10" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Redes Oficiais de Daniel Munduruku</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+     <div class="bg-[#0F0A06]/70 border border-[#C8A951]/20 rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-[#C8A951]/10 hover:border-[#C8A951] transition-all duration-300 group">
+      <div class="text-[#C8A951] group-hover:text-[#F5E6C8] transition-colors mb-3"><i data-lucide="youtube" style="width:36px;height:36px;"></i></div>
+      <h3 class="text-[#F5E6C8] font-bold font-serif text-lg mb-4">YouTube</h3>
+      <a href="https://youtube.com/@dmunduruku?si=JxOSLIMK0hwBR-4s" target="_blank" class="w-full bg-transparent hover:bg-[#C8A951] border border-[#C8A951] text-[#C8A951] hover:text-[#1A0F0A] font-sans-alt font-medium py-2 px-4 rounded transition-all duration-300 text-sm">Acessar Perfil</a>
+     </div>
+     <div class="bg-[#0F0A06]/70 border border-[#C8A951]/20 rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-[#C8A951]/10 hover:border-[#C8A951] transition-all duration-300 group">
+      <div class="text-[#C8A951] group-hover:text-[#F5E6C8] transition-colors mb-3"><i data-lucide="message-square" style="width:36px;height:36px;"></i></div>
+      <h3 class="text-[#F5E6C8] font-bold font-serif text-lg mb-4">TikTok</h3>
+      <a href="https://www.tiktok.com/@daniel.munduruku" target="_blank" class="w-full bg-transparent hover:bg-[#C8A951] border border-[#C8A951] text-[#C8A951] hover:text-[#1A0F0A] font-sans-alt font-medium py-2 px-4 rounded transition-all duration-300 text-sm">Acessar Perfil</a>
+     </div>
+     <div class="bg-[#0F0A06]/70 border border-[#C8A951]/20 rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-[#C8A951]/10 hover:border-[#C8A951] transition-all duration-300 group">
+      <div class="text-[#C8A951] group-hover:text-[#F5E6C8] transition-colors mb-3"><i data-lucide="twitter" style="width:36px;height:36px;"></i></div>
+      <h3 class="text-[#F5E6C8] font-bold font-serif text-lg mb-4">Rede X</h3>
+      <a href="https://x.com/dmunduruku" target="_blank" class="w-full bg-transparent hover:bg-[#C8A951] border border-[#C8A951] text-[#C8A951] hover:text-[#1A0F0A] font-sans-alt font-medium py-2 px-4 rounded transition-all duration-300 text-sm">Acessar Perfil</a>
+     </div>
+     <div class="bg-[#0F0A06]/70 border border-[#C8A951]/20 rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-[#C8A951]/10 hover:border-[#C8A951] transition-all duration-300 group">
+      <div class="text-[#C8A951] group-hover:text-[#F5E6C8] transition-colors mb-3"><i data-lucide="facebook" style="width:36px;height:36px;"></i></div>
+      <h3 class="text-[#F5E6C8] font-bold font-serif text-lg mb-4">Facebook</h3>
+      <a href="https://www.facebook.com/dmunduruku/" target="_blank" class="w-full bg-transparent hover:bg-[#C8A951] border border-[#C8A951] text-[#C8A951] hover:text-[#1A0F0A] font-sans-alt font-medium py-2 px-4 rounded transition-all duration-300 text-sm">Acessar Perfil</a>
+     </div>
+     <div class="bg-[#0F0A06]/70 border border-[#C8A951]/20 rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-[#C8A951]/10 hover:border-[#C8A951] transition-all duration-300 group">
+      <div class="text-[#C8A951] group-hover:text-[#F5E6C8] transition-colors mb-3"><i data-lucide="instagram" style="width:36px;height:36px;"></i></div>
+      <h3 class="text-[#F5E6C8] font-bold font-serif text-lg mb-4">Instagram</h3>
+      <a href="https://www.instagram.com/danielmundurukuoficial?igsh=N3RydDFtZzl3ajEy" target="_blank" class="w-full bg-transparent hover:bg-[#C8A951] border border-[#C8A951] text-[#C8A951] hover:text-[#1A0F0A] font-sans-alt font-medium py-2 px-4 rounded transition-all duration-300 text-sm">Acessar Perfil</a>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section id="instituto" class="w-full py-20 px-4" style="background: linear-gradient(180deg, #1A0F0A, #2D1810);">
+   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center fade-in">
+    <div class="order-2 md:order-1">
+     <h2 class="canva-text text-[#C8A951] font-bold mb-4" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Instituto UK'A</h2>
+     <div class="canva-text text-[#F5E6C8]/90 space-y-4 leading-relaxed font-sans-alt text-justify" style="color: rgb(245, 230, 200); font-weight: 400; font-style: normal; font-size: 17px;">
+      <p>O Instituto UK'A - Casa dos Saberes Ancestrais é uma organização concebida idealmente por Daniel Munduruku que atua como um núcleo dinâmico para a promoção, preservação e ampla difusão dos saberes intelectuais, ambientais e artísticos das comunidades indígenas do Brasil.</p>
+      <p>Com forte foco no desenvolvimento de ações educacionais avançadas, o instituto oferece suporte pedagógico para escolas e redes de ensino públicas e privadas, auxiliando de forma técnica e prática na correta implementação da legislação nacional (como a Lei 11.645/08) que exige a inclusion da história e cultura indígena nas matrizes curriculares nacionais.</p>
+      <p>Por meio de seminários, publicações, consultorias integradas e eventos interculturais de larga escala (como o Encontro de Escritores e Artistas Indígenas, realizado historicamente em parceria com instituições de fomento cultural), o Instituto UK'A defende a riqueza e a pluralidade identitária do país, construindo redes de conscientização sistemática contra o etnocentrismo estrutural e gerando salvaguardas sociais e intelectuais sólidas para que os saberes tradicionais permaneçam protegidos, catalogados e devidamente valorizados.</p>
+     </div>
+    </div>
+    <div class="flex justify-center order-1 md:order-2">
+     <div class="bg-white/5 p-6 rounded-2xl border border-[#C8A951]/20 shadow-2xl max-w-sm hover:border-[#C8A951]/50 transition-colors duration-300">
+      <img class="canva-image w-full h-auto object-contain rounded-xl" loading="lazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSReSzNoPfqoxfVZD7tZZwf9fWXXqK8F49MdNbIWMsds-3Uja2YIKu082s&s=10" alt="Logo Instituto UK'A">
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section id="estatisticas" class="w-full py-16 px-4 bg-[#0F0A06] border-y border-[#C8A951]/20">
+   <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+    <div class="p-4 bg-[#1A0F0A]/40 rounded-xl border border-[#C8A951]/10 shadow-md">
+     <span id="counter-books" class="block text-4xl lg:text-5xl font-black text-[#C8A951] mb-2 font-serif">0</span>
+     <p class="font-sans-alt text-[#F5E6C8]/80 text-xs uppercase tracking-widest font-semibold">Livros Publicados</p>
+    </div>
+    <div class="p-4 bg-[#1A0F0A]/40 rounded-xl border border-[#C8A951]/10 shadow-md">
+     <span id="counter-years" class="block text-4xl lg:text-5xl font-black text-[#C8A951] mb-2 font-serif">0</span>
+     <p class="font-sans-alt text-[#F5E6C8]/80 text-xs uppercase tracking-widest font-semibold">Anos de Atuação</p>
+    </div>
+    <div class="p-4 bg-[#1A0F0A]/40 rounded-xl border border-[#C8A951]/10 shadow-md">
+     <span id="counter-awards" class="block text-4xl lg:text-5xl font-black text-[#C8A951] mb-2 font-serif">0</span>
+     <p class="font-sans-alt text-[#F5E6C8]/80 text-xs uppercase tracking-widest font-semibold">Prêmios Nacionais</p>
+    </div>
+    <div class="p-4 bg-[#1A0F0A]/40 rounded-xl border border-[#C8A951]/10 shadow-md flex flex-col justify-center items-center">
+     <div class="text-[#C8A951] mb-1"><i data-lucide="award" style="width:32px;height:32px;"></i></div>
+     <p class="font-sans-alt text-[#F5E6C8] text-sm uppercase tracking-wider font-bold">Referência da Literatura Indígena Brasileira</p>
+    </div>
+   </div>
+  </section>
+
+  <section id="frases" class="w-full py-20 px-4 geo-pattern" style="background-color: #1A0F0A;">
+   <div class="max-w-4xl mx-auto text-center fade-in">
+    <div class="text-[#C8A951]/30 mx-auto mb-4 flex justify-center"><i data-lucide="quote" style="width:48px;height:48px;"></i></div>
+    <p class="text-2xl lg:text-3xl italic text-[#F5E6C8] leading-relaxed font-serif px-4">"A escrita é uma ferramenta que o indígena encontrou para registrar suas memórias e fazê-las ecoar pelo tempo, garantindo que nossas origens permaneçam vivas no futuro."</p>
+    <div class="pattern-border w-24 mx-auto mt-6 mb-3"></div>
+    <span class="font-sans-alt text-[#C8A951] uppercase tracking-widest text-xs font-bold">Daniel Munduruku</span>
+   </div>
+  </section>
+
+  <section id="galeria" class="w-full py-20 px-4" style="background-color: #0F0A06;">
+   <div class="max-w-6xl mx-auto">
+    <h2 data-template-id="gallery-title" class="canva-text text-center text-[#C8A951] font-bold mb-4 fade-in" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Galeria: Cultura, Território e Resistência</h2>
+    <p class="text-[#F5E6C8]/70 font-sans-alt text-center max-w-2xl mx-auto mb-10 text-sm">Clique nas imagens do acervo para expandir. Cada registro reflete as frentes integradas de atuação pedagógica, palestras, reconhecimento institucional e preservação das identidades comunitárias exercidas por Daniel.</p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 fade-in">
+     <div class="bg-[#1A0F0A]/50 border border-[#C8A951]/10 rounded-xl overflow-hidden shadow-xl p-3 flex flex-col justify-between">
+      <div class="relative overflow-hidden rounded-lg group">
+       <img class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG2VPecXtIUIecIQEWBbTniKEWoLetvg2oivsKWIzqmeB_LegPlrjXAvxi&s=10" alt="Daniel Munduruku com estudantes em atividade educacional">
+      </div>
+      <p class="text-[#F5E6C8]/80 text-xs font-sans-alt mt-3 text-justify"><strong>Atividade Pedagógica Escolar:</strong> Ilustra Daniel atuando em sala de aula. Representa o momento prático de desconstrução de preconceitos históricos através da literatura e contação de histórias com alunos.</p>
+     </div>
+     
+     <div class="bg-[#1A0F0A]/50 border border-[#C8A951]/10 rounded-xl overflow-hidden shadow-xl p-3 flex flex-col justify-between">
+      <div class="relative overflow-hidden rounded-lg group">
+       <img class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaSgN-TKyROZoIzUBxsEvOafL_XeSGLnAlZAMeHY266Bxm0EjLkrWcUG0&s=10" alt="Daniel Munduruku recebendo reconhecimento honorário">
+      </div>
+      <p class="text-[#F5E6C8]/80 text-xs font-sans-alt mt-3 text-justify"><strong>Reconhecimento de Mérito:</strong> Retrata o autor recebendo honrarias por seu trabalho intelectual. Simboliza a chancela do Estado e da intelectualidade nacional à sua influente militância escrita e pedagógica.</p>
+     </div>
+     
+     <div class="bg-[#1A0F0A]/50 border border-[#C8A951]/10 rounded-xl overflow-hidden shadow-xl p-3 flex flex-col justify-between">
+      <div class="relative overflow-hidden rounded-lg group">
+       <img class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://www.gaz.com.br/uploads/2023/07/Daniel-Munduruku.jpg" alt="Daniel Munduruku proferindo palestra cultural">
+      </div>
+      <p class="text-[#F5E6C8]/80 text-xs font-sans-alt mt-3 text-justify"><strong>Conferências e Palestras Magnas:</strong> Registro de Daniel atuando em esferas públicas e acadêmicas. Evidencia sua voz ativa contra o etnocentrismo e na defesa das leis de fomento e inclusão identitária.</p>
+     </div>
+     
+     <div class="bg-[#1A0F0A]/50 border border-[#C8A951]/10 rounded-xl overflow-hidden shadow-xl p-3 flex flex-col justify-between">
+      <div class="relative overflow-hidden rounded-lg group">
+       <img data-template-id="gallery-img-2" class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://images.pexels.com/photos/32218711/pexels-photo-32218711.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Children engaged in reading at a community library in Glória do Goitá, Brazil">
+      </div>
+      <p class="text-[#F5E6C8]/80 text-xs font-sans-alt mt-3 text-justify"><strong>Impacto Social na Leitura:</strong> Mostra crianças lendo em espaços comunitários. Representa o alcance final de suas mais de 74 publicações literárias, gerando cidadania e alteridade desde a primeira infância.</p>
+     </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 fade-in">
+     <div class="relative overflow-hidden rounded-lg group shadow-xl border border-[#C8A951]/10">
+      <img data-template-id="gallery-img-1" class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://images.pexels.com/photos/12434691/pexels-photo-12434691.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="A vibrant traditional ceremony featuring indigenous people dancing in an Amazonian village">
+     </div>
+     <div class="relative overflow-hidden rounded-lg group shadow-xl border border-[#C8A951]/10">
+      <img data-template-id="gallery-img-3" class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://images.pexels.com/photos/29759409/pexels-photo-29759409.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Stunning aerial shot of the Amazon River meandering beside lush rainforest">
+     </div>
+     <div class="relative overflow-hidden rounded-lg group shadow-xl border border-[#C8A951]/10">
+      <img data-template-id="gallery-img-4" class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://images.pexels.com/photos/18478575/pexels-photo-18478575.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Sunlight streams through dense foliage in a serene forest creating a tranquil river scene">
+     </div>
+     <div class="relative overflow-hidden rounded-lg group shadow-xl border border-[#C8A951]/10">
+      <img data-template-id="gallery-img-5" class="canva-image w-full h-48 object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300" loading="lazy" onclick="openLightbox(this)" src="https://images.pexels.com/photos/29722006/pexels-photo-29722006.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Indigenous woman adorned in tribal attire paints another's face during a cultural ceremony">
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""> <button class="absolute top-4 right-4 text-white text-3xl font-sans-alt">&times;</button>
+  </div>
+
+  <div id="book-modal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-[#1A0F0A] border-2 border-[#C8A951] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6 font-sans-alt">
+      <button onclick="closeBookModal()" class="absolute top-4 right-4 text-[#C8A951] hover:text-[#F5E6C8] text-2xl font-bold">&times;</button>
+      <div class="flex flex-col md:flex-row gap-6 mt-4">
+        <div class="w-full md:w-1/3 flex justify-center items-start">
+          <img id="modal-book-img" src="" class="w-40 h-56 object-cover rounded-lg border border-[#C8A951]/40 shadow-xl" alt="Capa do Livro">
+        </div>
+        <div class="w-full md:w-2/3 flex flex-col justify-between">
+          <div>
+            <h3 id="modal-book-title" class="text-2xl font-serif font-bold text-[#C8A951] mb-2">Título do Livro</h3>
+            <div class="grid grid-cols-2 gap-2 text-xs text-[#F5E6C8]/60 mb-4 border-b border-[#C8A951]/20 pb-2">
+              <p><strong>Ano:</strong> <span id="modal-book-year"></span></p>
+              <p><strong>Gênero:</strong> <span id="modal-book-genre" class="capitalize"></span></p>
+              <p class="col-span-2"><strong>Editora:</strong> <span id="modal-book-publisher"></span></p>
+            </div>
+            <h4 class="text-[#C8A951] font-semibold text-sm mb-1 uppercase tracking-wider">Sinopse Aprofundada:</h4>
+            <p id="modal-book-synopsis" class="text-sm text-[#F5E6C8]/90 text-justify leading-relaxed mb-6 font-light">Sinopse...</p>
+          </div>
+          <a id="modal-book-link" href="#" target="_blank" class="w-full text-center bg-[#C8A951] hover:bg-[#F5E6C8] text-[#1A0F0A] font-bold py-3 px-4 rounded-xl transition-all duration-300 uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+            <i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Adquirir / Acessar Edição Digital
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="obras" class="w-full py-20 px-4 geo-pattern" style="background-color: #1A0F0A;">
+   <div class="max-w-6xl mx-auto">
+    <h2 data-template-id="books-title" class="canva-text text-center text-[#C8A951] font-bold mb-2 fade-in" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Obras de Daniel Munduruku</h2>
+    <p class="text-center text-[#F5E6C8]/70 text-sm mb-6 font-sans-alt">Clique em qualquer linha da tabela para ler a sinopse completa e obter o link oficial da obra.</p>
+    <div class="flex flex-wrap gap-2 justify-center mb-6 font-sans-alt text-sm fade-in"><button class="filter-btn filter-active px-3 py-1 rounded-full border border-[#C8A951]/50 text-[#F5E6C8]" data-filter="all">Todos</button> <button class="filter-btn px-3 py-1 rounded-full border border-[#C8A951]/50 text-[#F5E6C8]/70" data-filter="infantil">Infantil/Juvenil</button> <button class="filter-btn px-3 py-1 rounded-full border border-[#C8A951]/50 text-[#F5E6C8]/70" data-filter="ensaio">Ensaio/Educação</button> <button class="filter-btn px-3 py-1 rounded-full border border-[#C8A951]/50 text-[#F5E6C8]/70" data-filter="autobiografia">Autobiografia</button>
+    </div>
+    <div class="overflow-x-auto rounded-xl border border-[#C8A951]/20 fade-in">
+     <table class="w-full text-left font-sans-alt text-sm">
+      <thead class="bg-[#C8A951]/10 text-[#C8A951]">
+       <tr>
+        <th class="p-3">Capa</th>
+        <th class="p-3 sort-btn" data-col="year">Ano <i data-lucide="arrow-up-down" style="width:14px;height:14px;display:inline;"></i></th>
+        <th class="p-3 sort-btn" data-col="title">Título <i data-lucide="arrow-up-down" style="width:14px;height:14px;display:inline;"></i></th>
+        <th class="p-3">Gênero</th>
+        <th class="p-3">Editora</th>
+       </tr>
+      </thead>
+      <tbody id="book-tbody" class="text-[#F5E6C8]/80"></tbody>
+     </table>
+    </div>
+   </div>
+  </section>
+
+  <section id="premios" class="w-full py-20 px-4" style="background: linear-gradient(180deg, #2D1810, #1A0F0A);">
+   <div class="max-w-5xl mx-auto">
+    <h2 data-template-id="awards-title" class="canva-text text-center text-[#C8A951] font-bold mb-10 fade-in" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Prêmios e Reconhecimentos</h2>
+    <div class="overflow-x-auto rounded-xl border border-[#C8A951]/20 fade-in">
+     <table class="w-full text-left font-sans-alt text-sm">
+      <thead class="bg-[#C8A951]/10 text-[#C8A951]">
+       <tr>
+        <th class="p-3">Ano</th>
+        <th class="p-3">Prêmio</th>
+        <th class="p-3">Instituição / Detalhes Adicionais</th>
+       </tr>
+      </thead>
+      <tbody id="awards-tbody" class="text-[#F5E6C8]/80"></tbody>
+     </table>
+    </div>
+   </div>
+  </section>
+
+  <section id="linha-do-tempo" class="w-full py-20 px-4 relative"><img data-template-id="timeline-bg" class="canva-image absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" src="https://images.pexels.com/photos/19652297/pexels-photo-19652297.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Serene sunset with vibrant golden hues reflected on a tranquil lake in Breves, PA, Brazil">
+   <div class="absolute inset-0 bg-[#1A0F0A]/85"></div>
+   <div class="relative z-10 max-w-4xl mx-auto">
+    <h2 data-template-id="timeline-title" class="canva-text text-center text-[#C8A951] font-bold mb-12 fade-in" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 26px;">Linha do Tempo Cronológica</h2>
+    <div id="timeline" class="relative border-l-2 border-[#C8A951]/40 ml-4 md:ml-8 space-y-8 fade-in"></div>
+   </div>
+  </section>
+
+  <section class="w-full py-20 px-4" style="background-color: #0F0A06;">
+   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+    <div class="fade-in">
+     <h3 data-template-id="education-title" class="canva-text text-[#C8A951] font-bold mb-4" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 20px;">Impacto Educacional</h3><img data-template-id="education-img" class="canva-image w-full h-56 object-cover rounded-xl mb-4 border border-[#C8A951]/20" loading="lazy" src="https://images.pexels.com/photos/32218635/pexels-photo-32218635.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="A young boy engrossed in reading a book in a classroom environment">
+     <p data-template-id="education-desc" class="canva-text text-[#F5E6C8]/80 font-sans-alt leading-relaxed text-justify" style="color: rgb(245, 230, 200); font-weight: 400; font-style: normal; font-size: 17px;">As obras de Daniel Munduruku são adotadas em escolas de todas as regiões brasileiras, servindo como pilares estruturais para o cumprimento efetivo da Lei 11.645/2008, que tornou obrigatório o estudo da história e cultura indígena e afro-brasileira nos ensinos fundamental e médio. Ao promover programas contínuos de formação de professores, oficinas pedagógicas integradas e palestras magnas, ele instaura metodologias que valorizam a ancestralidade e combatem os preconceitos eurocêntricos no ambiente escolar de forma sistemática.</p>
+    </div>
+    <div class="fade-in">
+     <h3 data-template-id="culture-title" class="canva-text text-[#C8A951] font-bold mb-4" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 20px;">Cultura e Ancestralidade</h3><img data-template-id="culture-img" class="canva-image w-full h-56 object-cover rounded-xl mb-4 border border-[#C8A951]/20" loading="lazy" src="https://images.pexels.com/photos/14017799/pexels-photo-14017799.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Indigenous artisan at market with colorful woven basket and pottery">
+     <p data-template-id="culture-desc" class="canva-text text-[#F5E6C8]/80 font-sans-alt leading-relaxed text-justify" style="color: rgb(245, 230, 200); font-weight: 400; font-style: normal; font-size: 17px;">O povo Munduruku, autodenominado Wuyjuyu, possui uma rica trajetória histórica e dominou culturalmente o Vale do Tapajós. Através do Instituto Uk'A e do INBRAPI (Instituto Indígena Brasileiro para a Propriedade Intelectual), Daniel atua diretamente na proteção internacional dos conhecimentos tradicionais coletivos, na revitalização linguística e na defesa da propriedade intelectual frente a tentativas de biopirataria e apropriação inadequada de elementos estéticos originários.</p>
+    </div>
+   </div>
+  </section>
+
+  <section id="creditos" class="w-full py-16 px-4 bg-[#1A0F0A] border-t border-[#C8A951]/10">
+   <div class="max-w-4xl mx-auto text-center fade-in">
+    <h2 class="canva-text text-[#C8A951] font-bold mb-6" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 24px;">Créditos e Produção Editorial</h2>
+    <p class="font-sans-alt text-[#F5E6C8]/80 max-w-2xl mx-auto leading-relaxed mb-4">Esta reportagem digital especial e acervo documental interativo foram desenvolvidos pela equipe dedicada de jornalistas e produtores de conteúdo:</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 font-sans-alt text-[#F5E6C8] font-semibold text-sm max-w-xl mx-auto mt-4">
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">Paulo Ricardo Rosario Santos</div>
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">Erick</div>
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">José Nicolas</div>
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">Isaac</div>
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">Mateus</div>
+     <div class="p-2 bg-[#0F0A06]/40 rounded border border-[#C8A951]/10">Gabriel</div>
+    </div>
+   </div>
+  </section>
+
+  <section id="fontes" class="w-full py-16 px-4 bg-[#0F0A06] border-t border-[#C8A951]/10">
+   <div class="max-w-4xl mx-auto fade-in">
+    <h2 class="canva-text text-center text-[#C8A951] font-bold mb-8" style="color: rgb(200, 169, 81); font-weight: 700; font-style: normal; font-size: 24px;">Fontes e Referências de Pesquisa Consultadas</h2>
+    <ul class="font-sans-alt text-sm text-[#F5E6C8]/70 space-y-3 list-disc pl-5 text-justify">
+     <li><strong>Câmara Brasileira do Livro (CBL):</strong> Histórico e catálogo oficial de premiações e registros de auditoria do Prêmio Jabuti (Categorias: Infantil, Juvenil e Literatura Infantil).</li>
+     <li><strong>Universidade de São Paulo (USP):</strong> Banco de Teses e Dissertações Digitais da USP — Análise profunda da tese de Doutorado de Daniel Munduruku pela Faculdade de Educação (FEUSP) sobre o papel sociopedagógico do movimento social.</li>
+     <li><strong>Ministério da Cultura (MinC) e Presidência da República:</strong> Decretos do Poder Executivo de concessão e atos oficiais da Ordem do Mérito Cultural (Graus Cavaleiro e Grã-Cruz).</li>
+     <li><strong>Instituto Brasileiro de Geografia e Estatística (IBGE):</strong> Dados demográficos e microdados censitários oficiais sobre a distribuição e diversidade de etnias (305) e troncos linguísticos indígenas (274 línguas vivas) no território nacional.</li>
+     <li><strong>Instituto Indígena Brasileiro para a Propriedade Intelectual (INBRAPI) e Instituto UK'A:</strong> Documentos institucionais, relatórios de impacto de convenções, cartilhas técnicas e diretrizes integradas de aplicação pedagógica da Lei 11.645/2008.</li>
+     <li><strong>UNESCO (Organização das Nações Unidas para a Educação, a Ciência e a Cultura):</strong> Relatórios e arquivos de premiações internacionais de literatura voltadas à promoção da tolerância, diversidade cultural e cultura da paz para a juventude.</li>
+     <li><strong>Academia Paulista de Letras (APL):</strong> Registros de atas, editais e discursos institucionais de posse referentes à admissão e o ingresso do primeiro escritor de matriz originária do país.</li>
+    </ul>
+   </div>
+  </section>
+
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-[#C8A951] text-[#1A0F0A] p-3 rounded-full shadow-2xl opacity-0 invisible transition-all duration-300 z-50 hover:bg-[#F5E6C8]">
+   <i data-lucide="arrow-up" style="width:20px;height:20px;"></i>
+  </button>
+
+  <footer data-template-id="footer-section" class="canva-footer w-full py-12 px-4 bg-[#0F0A06] border-t border-[#C8A951]/20">
+   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left text-sm font-sans-alt text-[#F5E6C8]/70 mb-8">
+    <div>
+     <h4 class="text-[#C8A951] font-bold font-serif mb-3 text-base">Revista Vozes da Natureza</h4>
+     <p>Uma homenagem, portal jornalístico e acervo digital dedicado ao registro literário, ativismo sociocultural e difusão das riquezas tradicionais representadas na figura de Daniel Munduruku.</p>
+    </div>
+    <div>
+     <h4 class="text-[#C8A951] font-bold font-serif mb-3 text-base">Navegação Rápida</h4>
+     <ul class="space-y-1.5">
+      <li><a href="#autor" class="hover:text-[#C8A951] transition-colors">Sobre o Autor</a></li>
+      <li><a href="#instituto" class="hover:text-[#C8A951] transition-colors">Instituto UK'A</a></li>
+      <li><a href="#obras" class="hover:text-[#C8A951] transition-colors">Catálogo Literário</a></li>
+      <li><a href="#premios" class="hover:text-[#C8A951] transition-colors">Premiações Mundiais</a></li>
+     </ul>
+    </div>
+    <div>
+     <h4 class="text-[#C8A951] font-bold font-serif mb-3 text-base">Foco Pedagógico</h4>
+     <p>Conteúdos programáticos e suporte estrutural voltados para a aplicação correta das diretrizes instituídas pela legislação da Lei 11.645/2008.</p>
+    </div>
+   </div>
+   <div class="pattern-border w-full mb-6"></div>
+   <p data-template-id="footer-text" class="canva-text text-[#F5E6C8]/60 font-sans-alt text-center text-sm" style="color: rgb(245, 230, 200); font-weight: 400; font-style: normal; font-size: 17px;">Revista Digital Vozes da Natureza © 2026 — Reportagem Digital Indigenista — Homenagem a Daniel Munduruku</p>
+  </footer>
+
+  <script src="/_sdk/editing_sdk.js"></script>
+  <script>
+const bookImgs = [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtl443mAaP7GXeiXb3z-N7sndyoHuY7n-mGaKIXknlh6azRdRUzW91xFk&s=10", 
+    "https://m.media-amazon.com/images/I/71kdXkpbrbL._AC_UF1000,1000_QL80_.jpg", 
+    "https://m.media-amazon.com/images/I/71lwiIWHS+L.jpg", 
+    "https://m.media-amazon.com/images/I/91aDpAmLqRL._AC_UF1000,1000_QL80_.jpg", 
+    "https://m.media-amazon.com/images/I/81nb9TCIlWL._AC_UF1000,1000_QL80_.jpg", 
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5f7jusFK_3caQIr6GZXFhz6h_vbGXdKQImM6h4rm2aDmpGWAD_OT5HLg&s=10", 
+    "https://cdn.awsli.com.br/899/899421/produto/34458444/27b84da278.jpg", 
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScf1ag-fw2ZdOy9cnvfbQimKRYc7T1642KgKEePGkJrak6f7o3e94d_H15&s=10", 
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE20xyuMTLGaGEIqpa9uTLIrHW2ak3YQaaGnj4JH6EkQ&s=10" 
+];
+
+// Obras estruturadas de forma isolada, corrigindo quaisquer colisões de dados ou conflitos (antigo Erro 153)
+const books = [
+    {id: 0, year:1996, title:"Histórias de Índio", genre:"infantil", publisher:"Companhia das Letrinhas", img:0, synopsis: "A obra de estreia que conquistou o público ao apresentar crônicas autobiográficas e contos tradicionais do povo Munduruku. Um livro fundamental que quebra estereótipos coloniais de forma poética e direta, mostrando o cotidiano, os mitos e a infância na floresta sob a ótica de quem a vive por dentro.", url: "https://www.companhiadasletras.com.br/livro/9788574060019/historias-de-indio"},
+    {id: 1, year:2000, title:"Coisas de Índio", genre:"infantil", publisher:"Callis", img:1, synopsis: "Uma verdadeira enciclopédia cultural voltada para crianças e jovens leitores. O livro responde a dúvidas comuns com imenso rigor e sensibilidade, detalhando a organização social, habitações, línguas, pinturas corporais e a profunda relação cosmológica dos povos originários com o ecossistema.", url: "https://www.amazon.com.br/Coisas-Índio-Daniel-Munduruku/dp/8574161047"},
+    {id: 2, year:2000, title:"O Banquete dos Deuses", genre:"ensaio", publisher:"Global Editora", img:2, synopsis: "Um ensaio primoroso focado na riqueza das conversas interculturais e na sabedoria dos pajés e anciãos. O autor traz reflexões contemporâneas sobre a diversidade cultural e a urgência de a sociedade ocidental reaprender a escutar a natureza, buscando um equilíbrio socioambiental planetário.", url: "https://grupoeditorialglobal.com.br/produtos/o-banquete-dos-deuses-conversa-sobre-a-diversidade-cultural-brasileira/"},
+    {id: 3, year:2001, title:"Meu Vô Apolinário", genre:"infantil", publisher:"Studio Nobel", img:3, synopsis: "Uma narrativa profundamente tocante e pessoal que resgata a infância do autor. Daniel compartilha como seu avô Apolinário o ajudou a superar os preconceitos sofridos na cidade, ensinando-o a ter orgulho de seu sangue, de sua ancestralidade e a enxergar o rio e o vento como professores vivos.", url: "https://www.amazon.com.br/Meu-V%C3%B4-Apolin%C3%A1rio-Daniel-Munduruku/dp/8585445952"},
+    {id: 4, year:2003, title:"O Sinal do Pajé", genre:"infantil", publisher:"Peirópolis", img:4, synopsis: "Mergulho profundo nos mistérios do xamanismo e nos ritos de passagem juvenis dentro das comunidades originárias. A narrativa detalha a passagem de bastão do conhecimento ancestral, o respeito pelas lideranças espirituais e a simbologia mística contida nos grafismos e sinais da mata.", url: "https://www.editorapeiropolis.com.br/produto/o-sinal-do-paje/"},
+    {id: 5, year:2004, title:"Contos Indígenas Brasileiros", genre:"infantil", publisher:"Global Editora", img:2, synopsis: "Uma coletânea mágica que reúne mitos de criação, lendas e fábulas de diversas etnias que povoam o território brasileiro. Ideal para uso em sala de aula, estimulando a alteridade, a imaginação infantojuvenil e o reconhecimento da imensa diversidade linguística e narrativa do país.", url: "https://grupoeditorialglobal.com.br/produtos/contos-indigenas-brasileiros/"},
+    {id: 6, year:2010, title:"O Karaíba", genre:"ensaio", publisher:"Amarilys", img:5, synopsis: "Uma crônica ficcional e histórica épica que se passa no Brasil pré-cabralino. A obra reconstrói o modo de vida, as alianças, as guerras e as profecias dos povos originários antes da chegada dos colonizadores europeus, devolvendo a autonomia narrativa e o protagonismo histórico aos verdadeiros donos da terra.", url: "https://www.amazon.com.br/Kara%C3%ADba-uma-hist%C3%B3ria-do-antes/dp/8520456121"},
+    {id: 7, year:2012, title:"O Caráter Educativo do Mov. Indígena", genre:"ensaio", publisher:"Paulinas", img:2, synopsis: "Fruto de suas pesquisas de doutorado na USP, este livro teórico analisa de forma sistemática como as mobilizações e os movimentos sociais das etnias operam como potentes espaços de pedagogia coletiva e formação cidadã, desafiando as estruturas educacionais formais e eurocêntricas.", url: "https://www.paulinas.com.br/produto/o-carater-educativo-do-movimento-indigena-brasileiro-1970-2010-4828"},
+    {id: 8, year:2016, title:"Memórias de Índio", genre:"autobiografia", publisher:"Edelbra", img:6, synopsis: "Uma obra reflexiva de caráter maduro e confessional. O pensador recapitula os desafios da transição da aldeia para os centros urbanos acadêmicos, detalhando os bastidores da sua luta pela consolidação dos direitos intelectuais e a literatura como ferramenta de emancipação política.", url: "https://www.amazon.com.br/Mem%C3%B3rias-Índio-Daniel-Munduruku/dp/8555900135"},
+    {id: 9, year:2016, title:"Vozes Ancestrais", genre:"infantil", publisher:"Global Editora", img:7, synopsis: "Vencedor do Prêmio Jabuti, o livro é uma ode aos ensinamentos transmitidos de geração em geração à beira da fogueira. Reúne narrativas carregadas de lirismo que ensinam pequenos e grandes leitores sobre ética, partilha comunitária, respeito aos mais velhos e comunhão integral com a floresta.", url: "https://grupoeditorialglobal.com.br/produtos/vozes-ancestrais/"},
+    {id: 10, year:2025, title:"Estações", genre:"infantil", publisher:"Moderna", img:8, synopsis: "Mais recente sucesso laureado com o Prêmio Jabuti. O livro costura as mudanças cíclicas da natureza (tempo das águas, das secas, das colheitas) com o amadurecimento interno do ser humano, demonstrando através de ilustrações ricas e prosa poética a cosmovisão do tempo circular indígena.", url: "https://www.moderna.com.br/literatura/"}
+];
+
+let sortCol = null, sortAsc = true, filterGenre = 'all';
+function renderBooks() {
+    let filtered = filterGenre === 'all' ? [...books] : books.filter(b => b.genre === filterGenre);
+    if (sortCol) filtered.sort((a,b) => { let v = a[sortCol] > b[sortCol] ? 1 : -1; return sortAsc ? v : -v; });
+    const tbody = document.getElementById('book-tbody');
+    tbody.innerHTML = filtered.map(b => `<tr class="book-row border-b border-[#C8A951]/10 bg-[#1A0F0A]" onclick="openBookModal(${b.id})"><td class="p-2"><img src="${bookImgs[b.img]}" class="w-12 h-16 object-cover rounded shadow" loading="lazy"></td><td class="p-3">${b.year}</td><td class="p-3 font-semibold text-[#C8A951]">${b.title}</td><td class="p-3 capitalize">${b.genre}</td><td class="p-3">${b.publisher}</td></tr>`).join('');
+}
+
+// Funções de controle do Modal Interativo de Sinopses
+function openBookModal(id) {
+    const book = books.find(b => b.id === id);
+    if (!book) return;
+    document.getElementById('modal-book-img').src = bookImgs[book.img];
+    document.getElementById('modal-book-img').alt = `Capa do livro ${book.title}`;
+    document.getElementById('modal-book-title').innerText = book.title;
+    document.getElementById('modal-book-year').innerText = book.year;
+    document.getElementById('modal-book-genre').innerText = book.genre;
+    document.getElementById('modal-book-publisher').innerText = book.publisher;
+    document.getElementById('modal-book-synopsis').innerText = book.synopsis;
+    document.getElementById('modal-book-link').href = book.url;
+    
+    const modal = document.getElementById('book-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeBookModal() {
+    const modal = document.getElementById('book-modal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+}
+
+// Fechar modal de livros ao clicar fora dele
+document.getElementById('book-modal').addEventListener('click', function(e) {
+    if(e.target === this) closeBookModal();
+});
+
+document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => { const col = btn.dataset.col; if (sortCol === col) sortAsc = !sortAsc; else { sortCol = col; sortAsc = true; } renderBooks(); });
+});
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active')); btn.classList.add('filter-active'); filterGenre = btn.dataset.filter; renderBooks(); });
+});
+
+const awards = [
+    [2002,"Menção Honrosa do Prêmio UNESCO de Literatura de Crianças e Jovens na tolerância","UNESCO (Reconhecimento Internacional)"],
+    [2003,"Prêmio Érico Vanucci Mendes","Outorgado pelo CNPq pela valiosa contribuição aos saberes tradicionais"],
+    [2004,"Prêmio Jabuti - Categoria Melhor Livro Infantil","Câmara Brasileira do Livro (CBL) - Obra: Coisas de Índio"],
+    [2006,"Ordem do Mérito Cultural - Grau Cavaleiro","Presidência da República / Ministério da Cultura (Brasil)"],
+    [2013,"Ordem do Mérito Cultural - Promoção ao Grau Grã-Cruz","Maior honraria cultural outorgada pelo Ministério da Cultura do Estado brasileiro"],
+    [2017,"Prêmio Jabuti - Categoria Juvenil","Câmara Brasileira do Livro (CBL) - Obra: Vozes Ancestrais"],
+    [2018,"Prêmio Fundação Bunge - Literatura Infantojuvenil","Fundação Bunge (Homenagem ao conjunto da obra e trajetória artística)"],
+    [2025,"Prêmio Jabuti - Categoria Literatura Infantil","Câmara Brasileira do Livro (CBL) - Obra: Estações"]
+];
+document.getElementById('awards-tbody').innerHTML = awards.map(a => `<tr class="border-b border-[#C8A951]/10"><td class="p-3 font-bold">${a[0]}</td><td class="p-3 font-semibold text-[#F5E6C8]">${a[1]}</td><td class="p-3">${a[2]}</td></tr>`).join('');
+
+const timeline = [
+    [1964,"Nascimento em Belém do Pará, pertencente ao histórico povo originário Munduruku."],
+    [1996,"Estreia no mercado literário editorial de forma triunfante com o clássico 'Histórias de Índio'."],
+    [2001,"Funda o INBRAPI (Instituto Indígena Brasileiro para a Propriedade Intelectual)."],
+    [2004,"Conquista o prestigiado Prêmio Jabuti nacional, consagrando a potência da narrativa de 'Coisas de Índio'."],
+    [2010,"Titula-se com a tese de Doutorado em Educação pela conceituada Universidade de São Paulo (USP)."],
+    [2017,"Arremata seu segundo Prêmio Jabuti literário, celebrando a consagração estética de 'Vozes Ancestrais'."],
+    [2023,"Estreia como ator na televisão nacional interpretando o pajé Jurecê Guató na novela Terra e Paixão (TV Globo)."],
+    [2025,"Vence o seu terceiro Prêmio Jabuti com 'Estações' e assume exercício como parlamentar eleito (vereador) em Lorena."],
+    [2026,"Torna-se o primeiro escritor de origem indígena a tomar posse na Academia Paulista de Letras (APL)."]
+];
+document.getElementById('timeline').innerHTML = timeline.map(t => `<div class="pl-8 relative"><div class="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-[#C8A951] border-2 border-[#1A0F0A]"></div><span class="text-[#C8A951] font-bold">${t[0]}</span><p class="text-[#F5E6C8]/80 font-sans-alt text-sm mt-1">${t[1]}</p></div>`).join('');
+
+function openLightbox(img) { document.getElementById('lightbox-img').src = img.src; document.getElementById('lightbox-img').alt = img.alt; document.getElementById('lightbox').classList.add('active'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
+function toggleMobileMenu() { const m = document.getElementById('mobile-menu'); m.classList.toggle('hidden'); }
+document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) { btt.classList.remove('opacity-0', 'invisible'); btt.classList.add('opacity-100', 'visible'); }
+    else { btt.classList.remove('opacity-100', 'visible'); btt.classList.add('opacity-0', 'invisible'); }
+});
+btt.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+window.addEventListener('scroll', () => {
+    const bg = document.getElementById('hero-parallax-img');
+    if(bg) {
+        let val = window.scrollY;
+        bg.style.transform = `translateY(${val * 0.35}px)`;
+    }
+});
+
+function startCounting(id, max) {
+    const el = document.getElementById(id);
+    let current = 0;
+    const duration = 1800;
+    const step = Math.max(Math.floor(duration / max), 20);
+    const timer = setInterval(() => {
+        current += 1;
+        if(current >= max) {
+            el.innerText = `+${max}`;
+            clearInterval(timer);
+        } else {
+            el.innerText = current;
+        }
+    }, step);
+}
+
+let statsTriggered = false;
+const observer = new IntersectionObserver(entries => { 
+    entries.forEach(e => { 
+        if (e.isIntersecting) {
+            e.target.classList.add('visible'); 
+            if(e.target.id === 'estatisticas' && !statsTriggered) {
+                statsTriggered = true;
+                startCounting('counter-books', 74);
+                startCounting('counter-years', 30);
+                startCounting('counter-awards', 8);
+            }
+        }
+    }); 
+}, {threshold: 0.1});
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const targetStats = document.getElementById('estatisticas');
+if(targetStats) observer.observe(targetStats);
+
+renderBooks();
+lucide.createIcons();
+</script>
+</body></html>
